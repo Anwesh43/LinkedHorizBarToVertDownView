@@ -206,7 +206,7 @@ class HorizBarToVertDownView(ctx : Context) : View(ctx) {
         fun create(activity : Activity) : HorizBarToVertDownView {
             val view : HorizBarToVertDownView = HorizBarToVertDownView(activity)
             activity.setContentView(view)
-            return view 
+            return view
         }
     }
 }
