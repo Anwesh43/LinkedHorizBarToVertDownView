@@ -154,4 +154,27 @@ class HorizBarToVertDownView(ctx : Context) : View(ctx) {
             return this
         }
     }
+
+    data class HorizBarToVertDown(var i : Int) {
+
+        private var curr : HBTVDNode = HBTVDNode(0)
+        private var dir : Int = 1
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            curr.draw(canvas, paint)
+        }
+
+        fun update(cb : (Int, Float) -> Unit) {
+            curr.update {i, scl ->
+                curr = curr.getNext(dir) {
+                    dir *= -1
+                }
+                cb(i, scl)
+            }
+        }
+
+        fun startUpating(cb  : () -> Unit) {
+            curr.startUpdating(cb)
+        }
+    }
 }
