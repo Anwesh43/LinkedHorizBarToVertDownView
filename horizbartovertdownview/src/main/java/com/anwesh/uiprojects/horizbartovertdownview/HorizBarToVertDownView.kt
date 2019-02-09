@@ -38,11 +38,11 @@ fun Canvas.drawHBTVDNode(i : Int, scale : Float, paint : Paint) {
     save()
     translate(0f, gap * i)
     for (j in 0..(barParts - 1)) {
-        val sc : Float = sc1.divideScale(0, 2)
+        val sc : Float = sc1.divideScale(j, 2)
         val barW : Float = w / 2 * sc
         val startX : Float = (w - barW) * j
         val endX : Float = startX + barW
-        drawRect(startX, 0f, endX, gap * sc2, paint)
+        drawRect(startX, gap * sc2, endX, gap, paint)
     }
     restore()
 }
