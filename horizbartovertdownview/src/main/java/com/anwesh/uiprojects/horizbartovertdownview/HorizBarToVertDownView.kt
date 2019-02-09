@@ -173,8 +173,30 @@ class HorizBarToVertDownView(ctx : Context) : View(ctx) {
             }
         }
 
-        fun startUpating(cb  : () -> Unit) {
+        fun startUpdating(cb  : () -> Unit) {
             curr.startUpdating(cb)
+        }
+    }
+
+    data class Renderer(var view : HorizBarToVertDownView) {
+
+        private val hbtvd : HorizBarToVertDown = HorizBarToVertDown(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            hbtvd.draw(canvas, paint)
+            animator.animate {
+                hbtvd.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            hbtvd.startUpdating {
+                animator.start()
+            }
         }
     }
 }
